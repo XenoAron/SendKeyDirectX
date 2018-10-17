@@ -20,8 +20,16 @@ namespace BishopMacro
 
         static void Main(string[] args)
         {
-            // 포커스 잡기
-            IntPtr hWnd = FindWindow(null, "MapleStory");
+                        // 포커스 잡기
+            Process[] list = Process.GetProcesses();
+            foreach (Process item in list)
+            {
+                // MapleStory : 24416
+                Console.WriteLine(item.ProcessName + ": " + item.Id + Environment.NewLine);
+                //SendKeys.Send("{LEFT}");
+            }
+
+            IntPtr hWnd = FindWindow(null, "League of Legends (TM) Client");
 
             if (!hWnd.Equals(IntPtr.Zero))
                 SetForegroundWindow(hWnd);
@@ -32,10 +40,34 @@ namespace BishopMacro
             };
 
             input.Load();
-
-            Thread.Sleep(3000);
-
+            Thread.Sleep(10000);
             input.SendKey(Keys.D);
+            /*
+            Thread.Sleep(10000);
+
+            int speed = 300;
+            input.SendKey(Keys.Q);
+            Thread.Sleep(400);
+            input.SendMouseEvent(MouseState.RightDown);
+            input.SendMouseEvent(MouseState.RightUp);
+            Thread.Sleep(speed);
+            input.SendKey(Keys.E);
+            Thread.Sleep(400);
+            input.SendMouseEvent(MouseState.RightDown);
+            input.SendMouseEvent(MouseState.RightUp);
+            Thread.Sleep(speed);
+            input.SendKey(Keys.R);
+            Thread.Sleep(600);
+            input.SendKey(Keys.Q);
+            Thread.Sleep(speed);
+            input.SendMouseEvent(MouseState.RightDown);
+            input.SendMouseEvent(MouseState.RightUp);
+            Thread.Sleep(speed);
+            input.SendKey(Keys.E);
+            */
+            //input.SendKey(Keys.D);
+            //input.SendKey(Keys.F);
+            //input.SendText("Hello");
             input.Unload();
 
             Thread.Sleep(1000);
